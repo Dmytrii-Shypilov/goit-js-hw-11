@@ -19,6 +19,7 @@ function onSubmit (event) {
     event.preventDefault();
     resetMarkup()  
     hideButton()
+
     const form = event.currentTarget;
     const searchedValue = form.searchQuery.value
     
@@ -33,6 +34,8 @@ function onSubmit (event) {
             return Notify.failure("Pictures are not found!")
         }
         renderMarkup(response.data.hits)
+        Notify.info(`Hooray! We found ${response.data.total} images!`)
+        console.log(response)
         showButton()  
     })
 }
