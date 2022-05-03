@@ -29,10 +29,10 @@ function onSubmit (event) {
     
     fetchPictures(searchedValue)
     .then((response) => {
-        
         if (response.data.totalHits === 0) {
             return Notify.failure("Pictures are not found!")
         }
+        
         renderMarkup(response.data.hits)
         Notify.info(`Hooray! We found ${response.data.total} images!`)
         console.log(response)
@@ -72,14 +72,12 @@ function renderMarkup (pictures) {
 }
 
 function loadMore () { 
-    
     const searchedValue = refs.form.searchQuery.value
     console.log(searchedValue)
     page+=1
     fetchPictures(searchedValue, page)
     .then((response) => {
         renderMarkup(response.data.hits)
-     
         showButton()
         })
 } 
