@@ -32,11 +32,14 @@ function onSubmit (event) {
         if (response.data.totalHits === 0) {
             return Notify.failure("Pictures are not found!")
         }
-        
+
         renderMarkup(response.data.hits)
         Notify.info(`Hooray! We found ${response.data.total} images!`)
         console.log(response)
-        showButton()  
+
+        if (response.data.total > 40) {
+        showButton() 
+        }
     })
 }
 
