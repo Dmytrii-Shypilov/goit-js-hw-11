@@ -47,13 +47,13 @@
 }
 
 .photo-card {
-position: relative;
-border: 1px solid grey;
-height: 275px;
-width: calc((100% - 45px) / 4);
-margin-right: 15px;
-margin-bottom: 15px;
-z-index: 1;
+    position: relative;
+    border: 1px solid grey;
+    height: 275px;
+    width: calc((100% - 45px) / 4);
+    margin-right: 15px;
+    margin-bottom: 15px;
+    z-index: 1;
 }
 
 .info {

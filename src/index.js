@@ -17,21 +17,23 @@ refs.loadBtn.addEventListener('click', loadMore)
 
 function onSubmit (event) {
     event.preventDefault();
-    resetMarkup()
+    resetMarkup()  
+    hideButton()
     const form = event.currentTarget;
     const searchedValue = form.searchQuery.value
-
+    
     if(!searchedValue) {
       return  Notify.warning("Enter what you're looking for!")
     }
-
+    
     fetchPictures(searchedValue)
     .then((response) => {
+        
         if (response.data.totalHits === 0) {
             return Notify.failure("Pictures are not found!")
         }
         renderMarkup(response.data.hits)
-        toggleButton()  
+        showButton()  
     })
 }
 
@@ -67,14 +69,15 @@ function renderMarkup (pictures) {
 }
 
 function loadMore () { 
-    toggleButton()
+    
     const searchedValue = refs.form.searchQuery.value
     console.log(searchedValue)
     page+=1
     fetchPictures(searchedValue, page)
     .then((response) => {
         renderMarkup(response.data.hits)
-        toggleButton()
+     
+        showButton()
         })
 } 
 
@@ -82,8 +85,11 @@ function resetMarkup() {
    return refs.gallery.innerHTML = " ";
 }
 
-function toggleButton () {
-    refs.loadBtn.classList.toggle("invisible")
+function showButton () {
+    refs.loadBtn.classList.remove("invisible")
 }
 
+function hideButton () {
+    refs.loadBtn.classList.add("invisible")
+}
 
