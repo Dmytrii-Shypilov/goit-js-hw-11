@@ -76,13 +76,17 @@ function renderMarkup (pictures) {
 
 function loadMore () { 
     const searchedValue = refs.form.searchQuery.value
-    console.log(searchedValue)
     page+=1
+
     fetchPictures(searchedValue, page)
     .then((response) => {
         renderMarkup(response.data.hits)
-        showButton()
-        })
+        if (page > Math.floor(response.data.total / 40)) {
+            page = 1;
+            return hideButton();
+        }
+        showButton();
+    })
 } 
 
 function resetMarkup() {
